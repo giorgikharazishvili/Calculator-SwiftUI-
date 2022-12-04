@@ -67,6 +67,7 @@ struct ContentView: View {
     @State var value = "0"
     @State var runningNumber = 0
     @State var currentOperation: Operation = .none
+    @State var presentAlert: Bool = true
     
     let buttons : [[CalculatorButtons]] = [
         [.clear, .negative, .percent, .devide],
@@ -119,7 +120,7 @@ struct ContentView: View {
                 }
                 .shadow(color: .black, radius: 2, x: 0, y: 0)
             }
-            .padding(.bottom, 60)
+            .padding(.bottom, 40)
             
         }
     }
@@ -156,7 +157,11 @@ struct ContentView: View {
                         case .multiply:
                             self.value = "\(runningValue * currentValue)"
                         case .devide:
-                            self.value = "\(runningValue / currentValue)"
+                            if currentValue == 0 {
+                                break
+                            } else {
+                                self.value = "\(runningValue / currentValue)"
+                            }
                         case .none:
                             break
                     }
