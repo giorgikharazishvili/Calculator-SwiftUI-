@@ -7,14 +7,71 @@
 
 import SwiftUI
 
+enum CalculatorButtons: String {
+    case one  = "1"
+    case two = "2"
+    case three = "3"
+    case four = "4"
+    case five = "5"
+    case six = "6"
+    case seven = "7"
+    case eight = "8"
+    case nine = "9"
+    case zero = "0"
+    
+    case add = "+"
+    case subtract = "-"
+    case devide = "/"
+    case multiply = "*"
+    case equal = "="
+    
+    case clear = "AC"
+    case decimal = "."
+    case percent = "%"
+    case negative = "+/-"
+    
+    var grayBlack: RadialGradient {
+        RadialGradient(gradient: Gradient(colors: [Color.gray, Color.black]), center: .center, startRadius: 1, endRadius: 80)
+    }
+    
+    var redBlack: RadialGradient {
+        RadialGradient(gradient: Gradient(colors: [Color.red, Color.black]), center: .center, startRadius: 1, endRadius: 80)
+    }
+    
+    var greenwBlack: RadialGradient {
+        RadialGradient(gradient: Gradient(colors: [Color.green, Color.black]), center: .center, startRadius: 1, endRadius: 80)
+    }
+    
+    var buttonsColors: RadialGradient {
+        switch self {
+            case .add, .subtract, .multiply, .equal:
+                return grayBlack
+                
+            case .clear, .negative, .percent, .devide:
+                return greenwBlack
+                
+            default:
+                return redBlack
+        }
+    }
+}
+
+
+enum Operation {
+    case add, subtract, multiply, devide, none
+}
+
+
 struct ContentView: View {
     
     @State var value = "0"
+    @State var runningNumber = 0
+    @State var currentOperation: Operation = .none
     
     let buttons : [[CalculatorButtons]] = [
-        [.clear, .negative, .percent, .divide],
+        [.clear, .negative, .percent, .devide],
         [.seven, .eight, .nine, .multiply],
-        [.four, .five, .six, .substract],
+        [.four, .five, .six, .subtract],
         [.one, .two, .three, .add],
         [.zero, .decimal, .equal]
     ]
@@ -23,7 +80,8 @@ struct ContentView: View {
         ZStack {
 //            LinearGradient(colors: [Color.black, Color.yellow, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
             
-            RadialGradient(gradient: Gradient(colors: [Color.yellow, Color.black]), center: .center, startRadius: 1, endRadius: 700).ignoresSafeArea()
+           RadialGradient(gradient: Gradient(colors: [Color.yellow, Color.black]), center: .center, startRadius: 1, endRadius: 700).ignoresSafeArea()
+            
             
             // Color.gray.ignoresSafeArea()
             VStack {
@@ -33,8 +91,8 @@ struct ContentView: View {
                     Spacer()
                     Text(value)
                         .bold()
-                        .font(.system(size: 100))
-                        .foregroundColor(.white)
+                        .font(.system(size: 110))
+                        .foregroundColor(.black)
                 }
                 .padding()
                 
@@ -68,8 +126,45 @@ struct ContentView: View {
     func didTap(button: CalculatorButtons){
 
         switch button {
-            case .equal, .add, .substract, .multiply:
-                break
+                
+            case .add, .subtract, .multiply, .devide, .equal:
+                if button == .add  {
+                    currentOperation = .add
+                    self.runningNumber = Int(self.value) ?? 0
+                    
+                } else if button == .subtract {
+                    currentOperation = .subtract
+                    self.runningNumber = Int(self.value) ?? 0
+                    
+                } else if button == .multiply {
+                    currentOperation = .multiply
+                    self.runningNumber = Int(self.value) ?? 0
+                    
+                } else if button == .devide {
+                    currentOperation = .devide
+                    self.runningNumber = Int(self.value) ?? 0
+                    
+                } else if button == .equal {
+                    let runningValue = self.runningNumber
+                    let currentValue = Int(self.value) ?? 0
+                    switch self.currentOperation {
+                        case .add:
+                            self.value = "\(runningValue + currentValue)"
+                        case .subtract:
+                            self.value = "\(runningValue - currentValue)"
+                        case .multiply:
+                            self.value = "\(runningValue * currentValue)"
+                        case .devide:
+                            self.value = "\(runningValue / currentValue)"
+                        case .none:
+                            break
+                    }
+                }
+                
+                if button != .equal {
+                    self.value = "0"
+                }
+                
             case .decimal, .negative, .percent:
                 break
             case .clear:
