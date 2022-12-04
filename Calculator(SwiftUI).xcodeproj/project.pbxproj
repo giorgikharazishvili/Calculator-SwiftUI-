@@ -11,6 +11,7 @@
 		049F29E1293CFFBA0005135C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049F29E0293CFFBA0005135C /* ContentView.swift */; };
 		049F29E3293CFFBC0005135C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049F29E2293CFFBC0005135C /* Assets.xcassets */; };
 		049F29E6293CFFBC0005135C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049F29E5293CFFBC0005135C /* Preview Assets.xcassets */; };
+		049F29ED293D0D7C0005135C /* CalculatorButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049F29EC293D0D7C0005135C /* CalculatorButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		049F29E0293CFFBA0005135C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		049F29E2293CFFBC0005135C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		049F29E5293CFFBC0005135C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		049F29EC293D0D7C0005135C /* CalculatorButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				049F29DE293CFFBA0005135C /* Calculator_SwiftUI_App.swift */,
 				049F29E0293CFFBA0005135C /* ContentView.swift */,
+				049F29EC293D0D7C0005135C /* CalculatorButtons.swift */,
 				049F29E2293CFFBC0005135C /* Assets.xcassets */,
 				049F29E4293CFFBC0005135C /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				049F29E1293CFFBA0005135C /* ContentView.swift in Sources */,
+				049F29ED293D0D7C0005135C /* CalculatorButtons.swift in Sources */,
 				049F29DF293CFFBA0005135C /* Calculator_SwiftUI_App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
