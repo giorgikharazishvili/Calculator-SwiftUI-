@@ -57,8 +57,8 @@ enum CalculatorButtons: String {
 }
 
 
-enum Operation {
-    case add, subtract, multiply, devide, none
+enum Operation: String {
+    case add = "+", subtract = "-", multiply = "*", devide = "/", none
 }
 
 
@@ -93,6 +93,7 @@ struct ContentView: View {
                         .bold()
                         .font(.system(size: 110))
                         .foregroundColor(.black)
+                        .italic()
                 }
                 .padding()
                 
@@ -118,7 +119,7 @@ struct ContentView: View {
                 }
                 .shadow(color: .black, radius: 2, x: 0, y: 0)
             }
-            .padding(.bottom, 40)
+            .padding(.bottom, 60)
             
         }
     }
