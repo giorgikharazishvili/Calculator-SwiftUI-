@@ -42,18 +42,18 @@ enum CalculatorButtons: String {
         RadialGradient(gradient: Gradient(colors: [Color.green, Color.black]), center: .center, startRadius: 1, endRadius: 80)
     }
     
-    var buttonsColors: RadialGradient {
-        switch self {
-            case .add, .subtract, .multiply, .equal:
-                return grayBlack
-                
-            case .clear, .negative, .percent, .devide:
-                return greenwBlack
-                
-            default:
-                return redBlack
-        }
-    }
+//    var buttonsColors: RadialGradient {
+//        switch self {
+//            case .add, .subtract, .multiply, .equal:
+//                return grayBlack
+//
+//            case .clear, .negative, .percent, .devide:
+//                return greenwBlack
+//
+//            default:
+//                return redBlack
+//        }
+//    }
 }
 
 
@@ -81,22 +81,33 @@ struct ContentView: View {
         ZStack {
 //            LinearGradient(colors: [Color.black, Color.yellow, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
             
-           RadialGradient(gradient: Gradient(colors: [Color.yellow, Color.black]), center: .center, startRadius: 1, endRadius: 700).ignoresSafeArea()
+//           RadialGradient(gradient: Gradient(colors: [Color.yellow, Color.black]), center: .center, startRadius: 1, endRadius: 700).ignoresSafeArea()
             
             
-            // Color.gray.ignoresSafeArea()
+            Color("backgroundColor").ignoresSafeArea()
+            
             VStack {
                 Spacer()
                 // Text Display
                 HStack {
                     Spacer()
-                    Text(value)
-                        .bold()
-                        .font(.system(size: 110))
-                        .foregroundColor(.black)
-                        .italic()
+                    RoundedRectangle(cornerRadius: 25, style: .continuous)
+                        .fill(Color("backgroundColor"))
+                        .frame(width: UIScreen.main.bounds.width - 4*10, height: 220)
+                                    .overlay(
+                                        Text(value)
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                                            .padding()
+                                            .bold()
+                                            
+                                            .font(.system(size: 70))
+                                            .foregroundColor(.black)
+                                            .italic()
+                                    )
                 }
                 .padding()
+                .shadow(color: .gray, radius: 5, x: 5, y: 5)
+                
                 
                 //Our buttons
                 ForEach(buttons, id: \.self) { row in
@@ -108,17 +119,19 @@ struct ContentView: View {
                                    , label: {
                                 Text(item.rawValue)
                                     .frame(width: buttonsWidth(item: item), height: buttonsHeight(), alignment: .center)
-                                    .background(item.buttonsColors)
-                                    .shadow(color: .white, radius: 5, x: 0, y: 0)
+                                    
+                                    .background(Color("backgroundColor"))
+//                                    .shadow(color: .black, radius: 5, x: 0, y: 0)
                                     .foregroundColor(.black)
                                     .font(.system(size: 60))
-                                    .fontWeight(.bold)
-                                    .cornerRadius(buttonsWidth(item: item) / 6)
+                                    .fontWeight(.medium)
+                                    .cornerRadius(buttonsWidth(item: item) / 2)
                             })
                         }
                     }
+                    
                 }
-                .shadow(color: .black, radius: 2, x: 0, y: 0)
+                .shadow(color: .gray, radius: 3, x: 5, y: 5)
             }
             .padding(.bottom, 40)
             
